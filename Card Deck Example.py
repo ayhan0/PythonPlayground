@@ -27,3 +27,15 @@ class CardDeck:
 deck = CardDeck()
 for card in deck:
     print(card)
+
+# ********* EASİER WAY WİTH YİELD *****
+from collections import namedtuple
+suits = ('Spades','Hearths','Diamonds','Clubs')
+Ranks = tuple(range(2,11))+tuple('JKQA')
+Card = namedtuple('Card','rank suit')
+def card_gen():
+    for suit in suits:
+        for rank in ranks:
+            yield(Card(rank,suit))
+for card in card_gen():
+    print(card)
