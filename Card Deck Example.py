@@ -31,11 +31,21 @@ for card in deck:
 # ********* EASİER WAY WİTH YİELD *****
 from collections import namedtuple
 suits = ('Spades','Hearths','Diamonds','Clubs')
-Ranks = tuple(range(2,11))+tuple('JKQA')
-Card = namedtuple('Card','rank suit')
-def card_gen():
-    for suit in suits:
-        for rank in ranks:
-            yield(Card(rank,suit))
-for card in card_gen():
-    print(card)
+class CardDeck:
+    suits = ('Spades','Hearts','Diamonds','Clubs')
+    ranks = tuple(range(2,11))+tuple('JQKA')
+    
+    def __iter__(self):
+        return CardDeck.card_gen()
+    def __reversed__(self):
+        return CardDeck.reversed_card_gen()
+    @staticmethod    
+    def card_gen():
+        for suit in CardDeck.suits:
+            for rank in CardDeck.ranks:
+                yield Card(rank,suit)
+    @staticmethod
+    def reversed_card_gen():
+        for suit in reversed(CardDeck.suits):
+            for rank in reversed(CardDeck.ranks):
+                yield Card(rank,suit)
