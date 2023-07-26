@@ -49,3 +49,13 @@ class CardDeck:
         for suit in reversed(CardDeck.suits):
             for rank in reversed(CardDeck.ranks):
                 yield Card(rank,suit)
+#DİFFERENT WAY İSLİCE
+from collections import namedtuple
+Card = namedtuple('Card','rank suit')
+def card_deck():
+    ranks = tuple((str(num)for num in range(2,11)))+tuple('JKQA')
+    suits = ('Spades','Hearths','Diamonds','Clubs')
+    for suit in suits:
+        for rank in ranks:
+            yield Card(rank,suit)
+list(islice(card_deck(),10))
